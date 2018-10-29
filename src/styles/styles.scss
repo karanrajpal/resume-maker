@@ -1,0 +1,99 @@
+$bg-white: #fdfdfd;
+
+#resume-app {
+	font-family: 'Roboto', sans-serif;
+	font-size: 12px;
+	justify-content: center;
+	display: flex;
+
+	.resume-split-screen {
+		width: 100vw;
+		display: flex;
+		background-color: $bg-white;
+	}
+
+	.resume {
+		box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75);
+		background-color: $bg-white;
+		margin: 10px;
+		padding: 40px;
+		width: 794px;
+		height: 1123px;
+
+		&-header {
+			color: #808080;
+			&__role {
+				text-transform: uppercase;
+			}
+		}
+
+		&-body {
+			display: flex;
+			margin-top: 25px;
+
+			&__column-1 {
+				width: 23%;
+				margin-right: 20px;
+			}
+			&__column-2 {
+				width: 77%;
+			}
+		}
+
+		&__section-heading {
+			font-weight: bold;
+			text-transform: uppercase;
+			font-size: 15px;
+			margin: 0 0 5px 0;
+		}
+
+		&-section {
+			margin-bottom: 25px;
+			.resume-item {
+				margin-bottom: 10px;
+				&__title {
+					font-weight: 500;
+					font-size: 16px;
+				}
+				&__line2 {
+					display: flex;
+					justify-content: space-between;
+					margin: 4px 0;
+					.resume-item__subtitle {
+						font-style: italic;
+					}
+				}
+	
+				&__description {
+					font-weight: 100;
+				}
+			}
+		}
+	}
+
+	.resume-editor {
+		background: rgb(39, 40, 34);
+		width: 50%;
+		position: relative;
+		height: 100vh;
+		display: flex;
+		flex-flow: column;
+
+		&__toolbar {
+			display: flex;
+			margin-bottom: 10px;
+
+			.resume-editor__logo {
+				color: white;
+				border: 1px solid white;
+				margin: 10px;
+			}
+
+			.btn {
+				cursor: pointer;
+				text-decoration: none;
+				color: #efefef;
+			}
+		}
+	}
+}
