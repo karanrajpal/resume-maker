@@ -3,15 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-// Importing external modules for code editor 
 import AceEditor from 'react-ace';
 import brace from 'brace';
 import 'brace/mode/json';
 import 'brace/theme/monokai';
 
-// Import resume component
-
-// Import actions
+import ConnectedResume from './Resume';
 import { setResumeJson, loadInitialState } from '../state/actions';
 
 class ResumeEditor extends Component {
@@ -29,74 +26,60 @@ class ResumeEditor extends Component {
         }
     }
 
-    // TODO: Delete this function
     render() {
+        let { resumeJson, loadInitialState } = this.props;
+        resumeJson = JSON.stringify(resumeJson, null, 2);
         return (
-            <div>Resume Editor</div>
-        );
+            <div className='resume-split-screen'>
+                <div className='resume-editor'>
+                    <div className='resume-editor__toolbar btn-group'>
+                        <div className='resume-editor__logo'>RG</div>
+                        <Link className='btn btn-link btn-small' to='/resume'>View</Link>
+                        <button className='btn btn-link btn-small' onClick={loadInitialState}>Reset</button>
+                    </div>
+                    <AceEditor
+                        mode="json"
+                        theme="monokai"
+                        name="code-editor"
+                        onChange={this.onChange}
+                        fontSize={14}
+                        showPrintMargin={true}
+                        showGutter={true}
+                        highlightActiveLine={true}
+                        value={resumeJson}
+                        height={'100%'}
+                        width={'100%'}
+                        setOptions={{
+                          enableBasicAutocompletion: false,
+                          enableLiveAutocompletion: false,
+                          enableSnippets: false,
+                          showLineNumbers: true,
+                          tabSize: 2,
+                        }}
+                    />
+                </div>
+                <ConnectedResume
+                    previewMode={true}
+                />
+          </div>
+          );
     }
-
-
-// TODO: Use this render function
-//     render() {
-//         let { resumeJson, loadInitialState } = this.props;
-//         resumeJson = JSON.stringify(resumeJson, null, 2);
-//         return (
-//             <div className='resume-split-screen'>
-//                 <div className='resume-editor'>
-//                     <div className='resume-editor__toolbar btn-group'>
-//                         <div className='resume-editor__logo'>RG</div>
-//                         <Link className='btn btn-link btn-small' to='/resume'>View</Link>
-//                         <button className='btn btn-link btn-small' onClick={loadInitialState}>Reset</button>
-//                     </div>
-//                     <AceEditor
-//                         mode="json"
-//                         theme="monokai"
-//                         name="code-editor"
-//                         onChange={this.onChange}
-//                         fontSize={14}
-//                         showPrintMargin={true}
-//                         showGutter={true}
-//                         highlightActiveLine={true}
-//                         value={resumeJson}
-//                         height={'100%'}
-//                         width={'100%'}
-//                         setOptions={{
-//                           enableBasicAutocompletion: false,
-//                           enableLiveAutocompletion: false,
-//                           enableSnippets: false,
-//                           showLineNumbers: true,
-//                           tabSize: 2,
-//                         }}
-//                     />
-//                 </div>
-//                 <ConnectedResume
-//                     previewMode={true}
-//                 />
-//           </div>
-//           );
-//     }
 };
 
+ResumeEditor.propTypes = {
+    resumeJson: PropTypes.object,
+    setResumeJson: PropTypes.func.isRequired,
+};
 
-// TODO: Delete this export when connected to Redux
-export default ResumeEditor;
+const ConnectedResumeEditor = connect(
+    (state) => ({
+        resumeJson: state.resumeJson,
+    }),
+    (dispatch) => ({
+        setResumeJson: (resumeJson) => dispatch(setResumeJson(resumeJson)),
+        loadInitialState: () => dispatch(loadInitialState()),
+    }),
+)
+(ResumeEditor);
 
-// TODO: Uncomment all of this
-// ResumeEditor.propTypes = {
-//     resumeJson: PropTypes.object,
-//     setResumeJson: PropTypes.func.isRequired,
-// };
-
-// const ConnectedResumeEditor = connect(
-//     (state) => ({
-//         resumeJson: state.resumeJson,
-//     }),
-//     (dispatch) => ({
-//         setResumeJson: (resumeJson) => dispatch(setResumeJson(resumeJson)),
-//         loadInitialState: () => dispatch(loadInitialState()),
-//     }),
-// )
-// (ResumeEditor);
-
-// export default ConnectedResumeEditor;
+export default ConnectedResumeEditor;

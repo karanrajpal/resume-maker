@@ -1,4 +1,7 @@
-// Import actions
+import {
+    SET_RESUME_JSON,
+    LOAD_INITIAL_STATE,
+} from './actions';
 
 // Import saveState to save to browser's local storage
 import { saveState } from './localStorage';
@@ -65,3 +68,24 @@ export const initialState = {
 };
 
 // Define and export reducer
+const AppReducer = (state = initialState, action) => {
+    switch(action.type) {
+        case SET_RESUME_JSON:
+            saveState({
+                resumeJson: action.resumeJson,
+            });
+            return {
+                ...state,
+                resumeJson: action.resumeJson,
+            };
+        case LOAD_INITIAL_STATE:
+            saveState({
+                resumeJson: initialState.resumeJson,
+            });
+            return {...initialState};
+        default:
+            return state;
+    }
+};
+
+export default AppReducer;
