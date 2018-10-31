@@ -5,7 +5,7 @@
   "author": "Karan Rajpal",
   "license": "ISC",
   "scripts": {
-    "start": "parcel build src/index.html",
+    "start": "parcel build src/index.html --public-url ./dist/",
     "dev": "parcel src/index.html"
   },
   "dependencies": {
