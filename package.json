@@ -6,7 +6,7 @@
   "license": "ISC",
   "scripts": {
     "start": "parcel build src/index.html; http-server dist/",
-    "serve": "http-server dist/",
+    "serve": "http-server dist/ -p 5000",
     "dev": "parcel src/index.html"
   },
   "dependencies": {

@@ -21,7 +21,7 @@ const Resume = ({ resumeJson, previewMode }) => {
     } = resumeJson['controls'];
     const styleProp = {
         "color": secondaryColor,
-        "zoom": previewMode ? 0.7 : 1
+        "zoom": previewMode ? 0.77 : 1
     };
 
     return (
