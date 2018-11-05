@@ -1,7 +1,10 @@
+// Import styles
+import '../../styles/styles.scss';
+
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import ConnectedResume from './Resume';
+import ConnectedResume from './ResumeSwitch';
 import ConnectedResumeEditor from './ResumeEditor';
 
 const App = () => (

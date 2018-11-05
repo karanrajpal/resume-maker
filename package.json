@@ -6,7 +6,6 @@
   "license": "ISC",
   "scripts": {
     "start": "parcel build src/index.html; node src/serve.js",
-    "really-serve": "node src/serve.js",
     "dev": "parcel src/index.html"
   },
   "dependencies": {

@@ -1,6 +1,3 @@
-// Import styles
-import './styles/styles.scss';
-
 //Import React component
 import App from './js/components/App';
 

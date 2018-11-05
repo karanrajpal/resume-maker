@@ -8,7 +8,7 @@ import brace from 'brace';
 import 'brace/mode/json';
 import 'brace/theme/monokai';
 
-import ConnectedResume from './Resume';
+import ConnectedResume from './ResumeSwitch';
 import { setResumeJson, loadInitialState } from '../state/actions';
 
 class ResumeEditor extends Component {
@@ -35,7 +35,10 @@ class ResumeEditor extends Component {
                     <div className='resume-editor__toolbar btn-group'>
                         <div className='resume-editor__logo'>RG</div>
                         <Link className='btn btn-link btn-small' to='/resume'>View</Link>
-                        <button className='btn btn-link btn-small' onClick={loadInitialState}>Reset</button>
+                        <button className='btn btn-link btn-small' onClick={() => {
+                            const confirm = window.confirm('Reset back to original resume data?');
+                            confirm && loadInitialState();
+                        }}>Reset</button>
                     </div>
                     <AceEditor
                         mode="json"
