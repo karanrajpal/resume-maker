@@ -1,4 +1,5 @@
 $bg-white: #fdfdfd;
+$link-color: #222288;
 
 #resume-app {
 	font-family: 'Roboto', sans-serif;
@@ -19,56 +20,6 @@ $bg-white: #fdfdfd;
 		padding: 40px;
 		width: 794px;
 		height: 1123px;
-
-		&-header {
-			color: #808080;
-			&__role {
-				text-transform: uppercase;
-			}
-		}
-
-		&-body {
-			display: flex;
-			margin-top: 25px;
-
-			&__column-1 {
-				width: 23%;
-				margin-right: 20px;
-			}
-			&__column-2 {
-				width: 77%;
-			}
-		}
-
-		&__section-heading {
-			font-weight: bold;
-			text-transform: uppercase;
-			font-size: 15px;
-			margin: 0 0 5px 0;
-		}
-
-		&-section {
-			margin-bottom: 25px;
-			.resume-item {
-				margin-bottom: 10px;
-				&__title {
-					font-weight: 500;
-					font-size: 16px;
-				}
-				&__line2 {
-					display: flex;
-					justify-content: space-between;
-					margin: 4px 0;
-					.resume-item__subtitle {
-						font-style: italic;
-					}
-				}
-	
-				&__description {
-					font-weight: 100;
-				}
-			}
-		}
 	}
 
 	.resume-editor {
