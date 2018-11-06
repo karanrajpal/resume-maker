@@ -1,40 +1,56 @@
 $link-color: #222288;
 .resume {
     &-header {
+        display: flex;
         color: #808080;
+        justify-content: space-between;
         &__role {
             text-transform: uppercase;
+        }
+
+        &__contacts {
+            display: flex;
+            width: 300px;
+            flex-wrap: wrap;
+            align-items: center;
+
+            .resume__contact {
+                width: 150px;
+                height: 20px;
+            }
+        }
+    }
+
+    // Keeping this section outside header or body because it might be moved around both
+    &__contact {
+        color: $link-color;
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+    }
+
+    &__skills {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+
+        .resume__skill {
+            margin: 3px 3px;
         }
     }
 
     &-body {
         display: flex;
-        margin-top: 25px;
+        margin-top: 15px !important;
+        width: 100%;
+        flex-direction: column;
 
-        .resume__sections {
+        &__sections {
             width: 100%;
-            // background: gray;
+            margin-top: 10px;
             position: relative;
-
-            .resume__skills {
-                position: relative;
-                background: maroon;
-                width: 100%;
-
-                .resume__skill {
-                    margin: 10px;
-                    position: relative;
-                }
-            }
-
-            .resume__contact {
-                color: $link-color;
-
-                a {
-                    color: inherit;
-                    text-decoration: none;
-                }
-            }
         }
     }
 
