@@ -11,7 +11,7 @@ export const initialState = {
     resumeJson: {
         "controls": {
             "primaryColor": "#6666cc",
-            "secondaryColor": "#333333"
+            "secondaryColor": "#603839"
         },
         "profile": {
             "firstName": "John",
