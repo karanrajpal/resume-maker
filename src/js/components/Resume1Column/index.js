@@ -15,15 +15,15 @@ import emailIcon from '../../../../icons/envelope32.png';
 import twitterIcon from '../../../../icons/twitter42.png';
 import locationIcon from '../../../../icons/location.png';
 
-const Contact = ({ url, text, icon }) => {
-    return (
-        <div className='resume__contact'>
-            {icon && <img className='resume__contact-icon' src={icon} />}
+const Contact = ({ url, text, icon }) => (
+    text ?
+        (<div className='resume__contact'>
+            {icon && <span className='resume__contact-icon'><img src={icon} /></span>}
             {url && <a href={url}>{text}</a>}
             {!url && <span>{text}</span>}
-        </div>
-    );
-};
+        </div>)
+        : null
+);
 
 Contact.propTypes = {
     text: PropTypes.string.isRequired,
@@ -39,6 +39,9 @@ const Resume1Column = ({ resumeJson, previewMode }) => {
         linkedIn = '',
         location = '',
         phoneNumber = '',
+        twitter = '',
+        github = '',
+        website = '',
     } = resumeJson['profile'];
     const {
         primaryColor,
@@ -61,6 +64,9 @@ const Resume1Column = ({ resumeJson, previewMode }) => {
                     <Contact text={email} url={`mailto: ${email}`} icon={emailIcon} />
                     <Contact text={location} icon={locationIcon} />
                     <Contact text={phoneNumber} icon={phoneIcon} />
+                    <Contact text={website} url={`http://${website}`} icon={websiteIcon} />
+                    <Contact text={github} url={`https://github.com/${github}`} icon={githubIcon} />
+                    <Contact text={twitter} url={`https://twitter.com/${twitter}`} icon={twitterIcon} />
                 </div>
             </div>
             <div className='resume-body'>

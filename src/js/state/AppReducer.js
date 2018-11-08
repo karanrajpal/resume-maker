@@ -20,7 +20,10 @@ export const initialState = {
             "role": "Software Developer",
             "email": "hello@gmail.com",
             "linkedIn": "linkedin.com",
-            "location": "New York"
+            "location": "New York",
+            "website": "",
+            "github": "",
+            "twitter": ""
         },
         "sections": [
             {
