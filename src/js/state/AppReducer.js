@@ -1,7 +1,7 @@
 import {
     SET_RESUME_JSON,
     LOAD_INITIAL_STATE,
-    SET_RESUME_FORMAT,
+    SET_RESUME_LAYOUT,
 } from './actions';
 
 // Import saveState to save to browser's local storage
@@ -76,7 +76,7 @@ export const initialState = {
         ],
         "skills": ["JavaScript", "Snoozing", "Eating"]
     },
-    resumeFormatKey: 'resume-1-column',
+    resumeLayoutKey: 'single',
 };
 
 // Define and export reducer
@@ -94,17 +94,17 @@ const AppReducer = (state = initialState, action) => {
         case LOAD_INITIAL_STATE:
             saveState({
                 resumeJson: initialState.resumeJson,
-                resumeFormatKey: initialState.resumeFormatKey,
+                resumeLayoutKey: initialState.resumeLayoutKey,
             });
             return {...initialState};
-        case SET_RESUME_FORMAT: {
+        case SET_RESUME_LAYOUT: {
             saveState({
                 ...state,
-                resumeFormatKey: action.resumeFormatKey,
+                resumeLayoutKey: action.resumeLayoutKey,
             });
             return {
                 ...state,
-                resumeFormatKey: action.resumeFormatKey,
+                resumeLayoutKey: action.resumeLayoutKey,
             };
         }
         default:

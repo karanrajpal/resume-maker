@@ -1,6 +1,6 @@
 export const SET_RESUME_JSON = 'SET_RESUME_JSON';
 export const LOAD_INITIAL_STATE = 'LOAD_INITIAL_STATE';
-export const SET_RESUME_FORMAT = 'SET_RESUME_FORMAT';
+export const SET_RESUME_LAYOUT = 'SET_RESUME_LAYOUT';
 
 export const setResumeJson = (resumeJson) => ({
 	type: SET_RESUME_JSON,
@@ -11,7 +11,7 @@ export const loadInitialState = () => ({
 	type: LOAD_INITIAL_STATE,
 });
 
-export const setResumeFormat = (resumeFormatKey) => ({
-	type: SET_RESUME_FORMAT,
-	resumeFormatKey,
+export const setResumeLayout = (resumeLayoutKey) => ({
+	type: SET_RESUME_LAYOUT,
+	resumeLayoutKey,
 });

@@ -5,13 +5,12 @@ import Resume1Column from './Resume1Column';
 import Resume2Column from './Resume2Column';
 
 const ResumeSwitch = (props) => {
-    const { resumeFormatKey } = props;
-    console.log(resumeFormatKey);
-    switch(resumeFormatKey) {
-        case 'resume-1-column': 
-            return <Resume1Column {...props} />
+    const { resumeLayoutKey } = props;
+    switch(resumeLayoutKey) {
+        case 'single': 
+            return <div className='resume-1-column'><Resume1Column {...props} /></div>
         default:
-            return <Resume2Column {...props} />
+            return <div className='resume-2-column'><Resume2Column {...props} /></div>
     };
 };
 
@@ -21,7 +20,7 @@ ResumeSwitch.propTypes = {
 
 const ConnectedResumeSwitch = connect(
     (state) => ({
-        resumeFormatKey: state.resumeFormatKey,
+        resumeLayoutKey: state.resumeLayoutKey,
     }),
 )(ResumeSwitch);
 

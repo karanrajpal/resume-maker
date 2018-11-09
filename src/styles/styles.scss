@@ -1,6 +1,26 @@
 $bg-white: #fdfdfd;
 $link-color: #222288;
 
+$h1-font-size: 2.5rem;
+$h5-font-size: 1.25rem;
+
+body {
+	line-height: 1.5;
+}
+h1, h2, h3, h4, h5, h6 {
+	margin-top: 0;
+	margin-bottom: .5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+}
+h1 { font-size: $h1-font-size; }
+// h2 { font-size: $h2-font-size; }
+// h3 { font-size: $h3-font-size; }
+// h4 { font-size: $h4-font-size; }
+h5 { font-size: $h5-font-size; }
+// h6 { font-size: $h6-font-size; }
+
 #resume-app {
 	font-family: 'Roboto', sans-serif;
 	font-size: 12px;
@@ -17,33 +37,60 @@ $link-color: #222288;
 		box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75);
 		background-color: $bg-white;
 		margin: 10px;
-		padding: 40px;
+		padding: 27px 35px;
 		width: 794px;
 		height: 1123px;
 	}
 
 	.resume-editor {
-		background: rgb(39, 40, 34);
-		width: 50%;
-		position: relative;
-		height: 100vh;
-		display: flex;
-		flex-flow: column;
+		&__logo {
+			color: white;
+			border: 1px solid white;
+			margin: 10px;
+		}
+		&__json {
+			width: 50%;
+			position: relative;
+			height: 100vh;
+			display: flex;
+			flex-flow: column;
+		}
 
+		nav {
+			background: rgb(39, 40, 34);
+		}
 		&__toolbar {
 			display: flex;
-			margin-bottom: 10px;
+			width: 100%;
+			flex-flow: row;
 
-			.resume-editor__logo {
-				color: white;
-				border: 1px solid white;
-				margin: 10px;
+			.dropdown {
+				z-index: 10;
+				width: 97px;
+				ul.menu {
+					// right: 40px;
+					// position: absolute;
+					width: 200px;
+					display: none;
+					background: rgb(39, 40, 34);
+				}
+				&:hover {
+					ul {
+						display: block;
+					}
+				}
 			}
 
-			.btn {
+			.btn, a {
 				cursor: pointer;
 				text-decoration: none;
 				color: #efefef;
+
+				&:hover {
+					background-color: #555;
+					color: white;
+					opacity: 1;
+				}
 			}
 		}
 	}
