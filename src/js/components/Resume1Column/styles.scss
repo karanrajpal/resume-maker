@@ -80,14 +80,30 @@ $link-color: #222288;
             margin-bottom: 15px;
             .resume-item {
                 margin-bottom: 7px;
-                &__title {
-                    font-weight: 500;
-                    font-size: 14px;
+                &__line1 {
+                    display: flex;
+                    width: 100%;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .resume-item__titles {
+                        display: flex;
+                        align-items: center;
+                        .resume-item__title {
+                            font-weight: 500;
+                            font-size: 15px;
+                        }
+                        .resume-item__subtitle {
+                            // font-style: italic;
+                            margin-left: 5px;
+                        }
+                    }
                 }
                 &__line2 {
                     display: flex;
                     justify-content: space-between;
                     margin: 0 0 2px;
+                    
                     .resume-item__subtitle {
                         font-style: italic;
                     }

@@ -58,38 +58,43 @@ h5 { font-size: $h5-font-size; }
 
 		nav {
 			background: rgb(39, 40, 34);
-		}
-		&__toolbar {
-			display: flex;
-			width: 100%;
-			flex-flow: row;
-
-			.dropdown {
-				z-index: 10;
-				width: 97px;
-				ul.menu {
-					// right: 40px;
-					// position: absolute;
-					width: 200px;
-					display: none;
-					background: rgb(39, 40, 34);
-				}
-				&:hover {
-					ul {
-						display: block;
+			height: 50px;
+			.resume-editor__toolbar {
+				max-width: unset;
+				margin: unset;
+				padding: 0 5px;
+				.dropdown {
+					z-index: 10;
+					width: 97px;
+					ul.menu {
+						width: 200px;
+						display: none;
+						background: rgb(39, 40, 34);
+					}
+					&:hover {
+						ul {
+							display: block;
+						}
 					}
 				}
-			}
 
-			.btn, a {
-				cursor: pointer;
-				text-decoration: none;
-				color: #efefef;
-
-				&:hover {
-					background-color: #555;
-					color: white;
-					opacity: 1;
+				.nav-logo {
+					a {
+						color: #efefef;
+					}
+				}
+	
+				.nav-links {
+					a {
+						cursor: pointer;
+						color: #efefef;
+						font-size: 0.9rem;
+		
+						&:hover {
+							background-color: #555;
+							opacity: 1;
+						}
+					}
 				}
 			}
 		}

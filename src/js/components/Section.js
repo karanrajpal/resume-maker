@@ -1,8 +1,47 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import SectionHeading from './SectionHeading';
 
-const Section = ({ sectionData, primaryColor }) => {
+export const SectionHeading = (props) => (
+	<div className="resume__section-heading">
+		{props.heading}
+	</div>
+);
+
+SectionHeading.propTypes = {
+	heading: PropTypes.string,
+};
+
+const SectionBody = ({ item, primaryColor }) => (
+	<div className='resume-item'>
+		<div className='resume-item__line1'>
+			<div className='resume-item__titles'>
+				<div className='resume-item__title' style={{ 'color': primaryColor }}>{item.title}</div>
+			</div>
+		</div>
+		<div className='resume-item__line2'>
+			<div className='resume-item__subtitle'>{item.subtitle}</div>
+			<div className='resume-item__date'>{item.date}</div>
+		</div>
+		<div className='resume-item__description' dangerouslySetInnerHTML={{ __html: item.description }}></div>
+	</div>
+);
+
+const SectionBodyCompact = ({ item, primaryColor }) => (
+	<div className='resume-item .resume-item--compact'>
+		<div className='resume-item__line1'>
+			<div className='resume-item__titles'>
+				<div className='resume-item__title' style={{ 'color': primaryColor }}>{item.title}</div>
+				<div className='resume-item__subtitle'>{item.subtitle}</div>
+			</div>
+			<div className='resume-item__date'>{item.date}</div>
+		</div>
+		{/* <div className='resume-item__line2'>
+		</div> */}
+		<div className='resume-item__description' dangerouslySetInnerHTML={{ __html: item.description }}></div>
+	</div>
+);
+
+export const Section = ({ sectionData, primaryColor, compact }) => {
 	const {
 		data,
 		title,
@@ -12,14 +51,13 @@ const Section = ({ sectionData, primaryColor }) => {
 			<SectionHeading heading={title} />
 			{
 				data.map((item) => (
-					<div className='resume-item' key={item.title}>
-						<div className='resume-item__title' style={{ 'color': primaryColor }}>{item.title}</div>
-						<div className='resume-item__line2'>
-							<div className='resume-item__subtitle'>{item.subtitle}</div>
-							<div className='resume-item__date'>{item.date}</div>
-						</div>
-						<div className='resume-item__description' dangerouslySetInnerHTML={{ __html: item.description }}></div>
-					</div>
+					<Fragment>
+						{
+							compact ?
+								<SectionBodyCompact item={item} primaryColor={primaryColor} key={item.title} />
+								: <SectionBody item={item} primaryColor={primaryColor} key={item.title} />
+						}
+					</Fragment>
 				))
 			}
 		</div>
@@ -38,5 +76,3 @@ Section.propTypes = {
 		title: PropTypes.string
 	}),
 };
-
-export default Section;

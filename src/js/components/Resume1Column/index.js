@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import SectionHeading from '../SectionHeading';
-import Section from '../Section';
+import { Section, SectionHeading } from '../Section';
 
 import './styles.scss';
 
@@ -30,7 +29,7 @@ Contact.propTypes = {
     url: PropTypes.string,
 };
 
-const Resume1Column = ({ resumeJson, previewMode }) => {
+const Resume1Column = ({ resumeJson, previewMode, compact = false }) => {
     const {
         firstName,
         lastName,
@@ -73,12 +72,12 @@ const Resume1Column = ({ resumeJson, previewMode }) => {
                 <SectionHeading heading='Skills' />
                 <div className='resume__skills'>
                     {resumeJson['skills'].map((skill) => (
-                        <span className='resume__skill'>• {skill}</span>
+                        <span className='resume__skill' key={skill} >• {skill}</span>
                     ))}
                 </div>
                 <div className='resume-body__sections'>
                     {resumeJson['sections'].map((section) => (
-                        <Section sectionData={section} primaryColor={primaryColor} key={section.title} />
+                        <Section sectionData={section} compact={compact} primaryColor={primaryColor} key={section.title} />
                     ))}
                 </div>
             </div>
@@ -93,6 +92,8 @@ Resume1Column.propTypes = {
         sections: PropTypes.array.isRequired,
         skills: PropTypes.array.isRequired,
     }),
+    compact: PropTypes.bool,
+    previewMode: PropTypes.bool,
 };
 
 const ConnectedResume1Column = connect(

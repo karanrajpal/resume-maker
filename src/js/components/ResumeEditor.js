@@ -21,8 +21,7 @@ const Toolbar = ({ loadInitialState, setResumeLayout }) => (
                 <li className='dropdown'>
                     <a>Layout</a>
                     <ul className='menu'>
-                        <li><a onClick={() => {
-                            console.log('calling unnecessarily'); setResumeLayout('single')}}>Single Column</a></li>
+                        <li><a onClick={() => setResumeLayout('single')}>Single Column</a></li>
                         <li><a onClick={() => setResumeLayout('single-compact')}>Single Column Compact</a></li>
                         <li><a onClick={() => setResumeLayout('double')}>Double Column</a></li>
                     </ul>
@@ -37,10 +36,18 @@ const Toolbar = ({ loadInitialState, setResumeLayout }) => (
     </nav>
 );
 
-const ConnectedToolbar = connect(null, (dispatch) => ({
-    loadInitialState: () => dispatch(loadInitialState()),
-    setResumeLayout: (resumeLayoutKey) => dispatch(setResumeLayout(resumeLayoutKey))
-}))(Toolbar);
+Toolbar.propTypes = {
+    loadInitialState: PropTypes.func.isRequired,
+    setResumeLayout: PropTypes.func.isRequired,
+}
+
+const ConnectedToolbar = connect(
+    null,
+    (dispatch) => ({
+        loadInitialState: () => dispatch(loadInitialState()),
+        setResumeLayout: (resumeLayoutKey) => dispatch(setResumeLayout(resumeLayoutKey))
+    })
+)(Toolbar);
 
 class ResumeEditor extends Component {
     constructor(props) {
@@ -58,18 +65,10 @@ class ResumeEditor extends Component {
     }
 
     render() {
-        let { resumeJson, loadInitialState, setResumeLayout } = this.props;
+        let { resumeJson } = this.props;
         resumeJson = JSON.stringify(resumeJson, null, 2);
         return (
             <div className='resume-editor'>
-                {/* <div className='resume-editor__toolbar btn-group'>
-                    <div className='resume-editor__logo'>RG</div>
-                    <Link className='btn btn-link btn-small' to='/resume'>View</Link>
-                    <button className='btn btn-link btn-small' onClick={() => {
-                        const confirm = window.confirm('Reset back to original resume data?');
-                        confirm && loadInitialState();
-                    }}>Reset</button>
-                </div> */}
                 <ConnectedToolbar />
                 <div className='resume-split-screen'>
                     <div className='resume-editor__json'>
@@ -114,9 +113,7 @@ const ConnectedResumeEditor = connect(
     }),
     (dispatch) => ({
         setResumeJson: (resumeJson) => dispatch(setResumeJson(resumeJson)),
-        loadInitialState: () => dispatch(loadInitialState()),
     }),
-)
-    (ResumeEditor);
+)(ResumeEditor);
 
 export default ConnectedResumeEditor;

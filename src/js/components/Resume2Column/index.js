@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import SectionHeading from '../SectionHeading';
-import Section from '../Section';
+import { Section, SectionHeading } from '../Section';
 
 import './styles.scss';
 
