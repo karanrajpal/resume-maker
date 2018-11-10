@@ -9,9 +9,9 @@ import 'brace/mode/json';
 import 'brace/theme/monokai';
 
 import ConnectedResume from './ResumeSwitch';
-import { setResumeJson, loadInitialState, setResumeLayout } from '../state/actions';
+import { setResumeJson, loadInitialState, setResumeLayout, setControl } from '../state/actions';
 
-const Toolbar = ({ loadInitialState, setResumeLayout }) => (
+const Toolbar = ({ controls = {}, setControl, loadInitialState, setResumeLayout }) => (
     <nav>
         <div className='nav-container resume-editor__toolbar'>
             <div className='nav-logo'>
@@ -26,6 +26,19 @@ const Toolbar = ({ loadInitialState, setResumeLayout }) => (
                         <li><a onClick={() => setResumeLayout('double')}>Double Column</a></li>
                     </ul>
                 </li>
+                <li className='dropdown'>
+                    <a>Colors</a>
+                    <ul className='menu'>
+                        <li className='menu-item'>
+                            <span>Primary</span>
+                            <input type='text' value={controls['primaryColor']} onChange={(e) => setControl('primaryColor', e.target.value)} />
+                        </li>
+                        <li className='menu-item'>
+                            <span>Secondary</span>
+                            <input type='text' value={controls['secondaryColor']} onChange={(e) => setControl('secondaryColor', e.target.value)} />
+                        </li>
+                    </ul>
+                </li>
                 <li><a onClick={() => {
                     const confirm = window.confirm('Reset back to original resume data?');
                     confirm && loadInitialState();
@@ -37,15 +50,20 @@ const Toolbar = ({ loadInitialState, setResumeLayout }) => (
 );
 
 Toolbar.propTypes = {
+    controls: PropTypes.object.isRequired,
     loadInitialState: PropTypes.func.isRequired,
     setResumeLayout: PropTypes.func.isRequired,
-}
+    setControl: PropTypes.func.isRequired,
+};
 
 const ConnectedToolbar = connect(
-    null,
+    (state) => ({
+        controls: state.controls,
+    }),
     (dispatch) => ({
         loadInitialState: () => dispatch(loadInitialState()),
-        setResumeLayout: (resumeLayoutKey) => dispatch(setResumeLayout(resumeLayoutKey))
+        setResumeLayout: (resumeLayoutKey) => dispatch(setResumeLayout(resumeLayoutKey)),
+        setControl: (controlKey, controlValue) => dispatch(setControl(controlKey, controlValue)),
     })
 )(Toolbar);
 

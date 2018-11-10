@@ -67,9 +67,24 @@ h5 { font-size: $h5-font-size; }
 					z-index: 10;
 					width: 97px;
 					ul.menu {
-						width: 200px;
+						width: 215px;
 						display: none;
 						background: rgb(39, 40, 34);
+						
+						.menu-item {
+							display: flex;
+							align-items: center;
+							padding: 10px;
+							justify-content: space-between;
+
+							span {
+								color: #efefef;
+								font-size: 0.9rem;
+							}
+							input {
+								width: 100px;
+							}
+						}
 					}
 					&:hover {
 						ul {

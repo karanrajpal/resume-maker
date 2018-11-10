@@ -20,7 +20,7 @@ Contact.propTypes = {
     url: PropTypes.string,
 };
 
-const Resume = ({ resumeJson, previewMode }) => {
+const Resume = ({ resumeJson, controls = {}, previewMode }) => {
     const {
         firstName,
         lastName,
@@ -31,9 +31,9 @@ const Resume = ({ resumeJson, previewMode }) => {
         phoneNumber = '',
     } = resumeJson['profile'];
     const {
-        primaryColor,
-        secondaryColor,
-    } = resumeJson['controls'];
+        primaryColor = '',
+        secondaryColor = '',
+    } = controls;
     const styleProp = {
         "color": secondaryColor,
         "zoom": previewMode ? 0.77 : 1
@@ -72,15 +72,20 @@ const Resume = ({ resumeJson, previewMode }) => {
 Resume.propTypes = {
     resumeJson: PropTypes.shape({
         profile: PropTypes.object.isRequired,
-        controls: PropTypes.object.isRequired,
         sections: PropTypes.array.isRequired,
         skills: PropTypes.array.isRequired,
     }),
+    controls: PropTypes.shape({
+        primaryColor: PropTypes.string.isRequired,
+        secondaryColor: PropTypes.string.isRequired,
+    }).isRequired,
+    previewMode: PropTypes.bool,
 };
 
 const ConnectedResume = connect(
     (state) => ({
         resumeJson: state.resumeJson,
+        controls: state.controls,
     })
 )(Resume);
 

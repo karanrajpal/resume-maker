@@ -95,7 +95,12 @@ $link-color: #222288;
                         }
                         .resume-item__subtitle {
                             // font-style: italic;
+                            font-weight: 500;
                             margin-left: 5px;
+
+                            &::before {
+                                // content: '| '
+                            }
                         }
                     }
                 }

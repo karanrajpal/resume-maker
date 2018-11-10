@@ -2,6 +2,7 @@ import {
     SET_RESUME_JSON,
     LOAD_INITIAL_STATE,
     SET_RESUME_LAYOUT,
+    SET_CONTROL,
 } from './actions';
 
 // Import saveState to save to browser's local storage
@@ -9,10 +10,6 @@ import { saveState } from './localStorage';
 
 export const initialState = {
     resumeJson: {
-        "controls": {
-            "primaryColor": "#6666cc",
-            "secondaryColor": "#603839"
-        },
         "profile": {
             "firstName": "John",
             "lastName": "Lennon",
@@ -77,20 +74,22 @@ export const initialState = {
         "skills": ["JavaScript", "Snoozing", "Eating"]
     },
     resumeLayoutKey: 'single',
+    controls: {
+        primaryColor: "#6666cc",
+        secondaryColor: "#603839"
+    },
 };
 
 // Define and export reducer
 const AppReducer = (state = initialState, action) => {
     switch(action.type) {
         case SET_RESUME_JSON:
-            saveState({
-                ...state,
-                resumeJson: action.resumeJson,
-            });
-            return {
+            const modifiedState = {
                 ...state,
                 resumeJson: action.resumeJson,
             };
+            saveState(modifiedState);
+            return modifiedState;
         case LOAD_INITIAL_STATE:
             saveState({
                 resumeJson: initialState.resumeJson,
@@ -98,14 +97,23 @@ const AppReducer = (state = initialState, action) => {
             });
             return {...initialState};
         case SET_RESUME_LAYOUT: {
-            saveState({
-                ...state,
-                resumeLayoutKey: action.resumeLayoutKey,
-            });
-            return {
+            const modifiedState ={
                 ...state,
                 resumeLayoutKey: action.resumeLayoutKey,
             };
+            saveState(modifiedState);
+            return modifiedState;
+        }
+        case SET_CONTROL: {
+            const modifiedState = {
+                ...state,
+                ['controls']: {
+                    ...state['controls'],
+                    [action.controlKey]: action.controlValue
+                },
+            };
+            saveState(modifiedState);
+            return modifiedState;
         }
         default:
             return state;

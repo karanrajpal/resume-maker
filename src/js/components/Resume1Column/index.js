@@ -29,7 +29,7 @@ Contact.propTypes = {
     url: PropTypes.string,
 };
 
-const Resume1Column = ({ resumeJson, previewMode, compact = false }) => {
+const Resume1Column = ({ resumeJson, controls = {}, previewMode, compact = false }) => {
     const {
         firstName,
         lastName,
@@ -45,7 +45,7 @@ const Resume1Column = ({ resumeJson, previewMode, compact = false }) => {
     const {
         primaryColor,
         secondaryColor,
-    } = resumeJson['controls'];
+    } = controls;
     const styleProp = {
         "color": secondaryColor,
         "zoom": previewMode ? 0.77 : 1
@@ -88,10 +88,13 @@ const Resume1Column = ({ resumeJson, previewMode, compact = false }) => {
 Resume1Column.propTypes = {
     resumeJson: PropTypes.shape({
         profile: PropTypes.object.isRequired,
-        controls: PropTypes.object.isRequired,
         sections: PropTypes.array.isRequired,
         skills: PropTypes.array.isRequired,
     }),
+    controls: PropTypes.shape({
+        primaryColor: PropTypes.string.isRequired,
+        secondaryColor: PropTypes.string.isRequired,
+    }).isRequired,
     compact: PropTypes.bool,
     previewMode: PropTypes.bool,
 };
@@ -99,6 +102,7 @@ Resume1Column.propTypes = {
 const ConnectedResume1Column = connect(
     (state) => ({
         resumeJson: state.resumeJson,
+        controls: state.controls,
     })
 )(Resume1Column);
 

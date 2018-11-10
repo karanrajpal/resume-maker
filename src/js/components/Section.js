@@ -51,11 +51,11 @@ export const Section = ({ sectionData, primaryColor, compact }) => {
 			<SectionHeading heading={title} />
 			{
 				data.map((item) => (
-					<Fragment>
+					<Fragment key={item.title}>
 						{
 							compact ?
-								<SectionBodyCompact item={item} primaryColor={primaryColor} key={item.title} />
-								: <SectionBody item={item} primaryColor={primaryColor} key={item.title} />
+								<SectionBodyCompact item={item} primaryColor={primaryColor} />
+								: <SectionBody item={item} primaryColor={primaryColor} />
 						}
 					</Fragment>
 				))
