@@ -32,10 +32,12 @@ const Toolbar = ({ controls = {}, setControl, loadInitialState, setResumeLayout 
                         <li className='menu-item'>
                             <span>Primary</span>
                             <input type='text' value={controls['primaryColor']} onChange={(e) => setControl('primaryColor', e.target.value)} />
+                            <span className='selected-color' title='Type in hex-code' style={{ backgroundColor: controls['primaryColor'] }} ></span>
                         </li>
                         <li className='menu-item'>
                             <span>Secondary</span>
                             <input type='text' value={controls['secondaryColor']} onChange={(e) => setControl('secondaryColor', e.target.value)} />
+                            <span className='selected-color' title='Type in hex-code' style={{ backgroundColor: controls['secondaryColor'] }} ></span>
                         </li>
                     </ul>
                 </li>
