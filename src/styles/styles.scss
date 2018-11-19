@@ -42,6 +42,14 @@ h5 { font-size: $h5-font-size; }
 		height: 1123px;
 	}
 
+	@media print {
+		.resume {
+			box-shadow: none;
+			margin: 0px;
+			padding: 2px 35px;
+		}
+	}
+
 	.resume-editor {
 		&__logo {
 			color: white;
@@ -67,7 +75,7 @@ h5 { font-size: $h5-font-size; }
 					z-index: 10;
 					width: 97px;
 					ul.menu {
-						width: 215px;
+						width: 225px;
 						display: none;
 						background: rgb(39, 40, 34);
 						
@@ -76,13 +84,22 @@ h5 { font-size: $h5-font-size; }
 							align-items: center;
 							padding: 10px;
 							justify-content: space-between;
+							border-bottom: 1px solid #efefef;
 
 							span {
 								color: #efefef;
 								font-size: 0.9rem;
+								width: 70px;
+
+								&.selected-color {
+									width: 30px;
+									height: 30px;
+									border: 1px solid white;
+								}
 							}
 							input {
-								width: 100px;
+								width: 93px;
+								height: 35px;
 							}
 						}
 					}

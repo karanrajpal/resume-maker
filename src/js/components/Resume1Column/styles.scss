@@ -6,6 +6,7 @@ $link-color: #222288;
             color: #808080;
             justify-content: space-between;
             &__role {
+                font-weight: 400;
                 text-transform: uppercase;
             }
 
@@ -58,7 +59,7 @@ $link-color: #222288;
 
         &-body {
             display: flex;
-            margin-top: 15px !important;
+            margin-top: 10px !important;
             width: 100%;
             flex-direction: column;
 
@@ -96,7 +97,7 @@ $link-color: #222288;
                         .resume-item__subtitle {
                             // font-style: italic;
                             font-weight: 500;
-                            margin-left: 5px;
+                            margin: 0 5px;
 
                             &::before {
                                 // content: '| '
