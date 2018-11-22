@@ -80,10 +80,10 @@ $link-color: #222288;
         &-section {
             margin-bottom: 15px;
             .resume-item {
-                margin-bottom: 7px;
                 &__line1 {
                     display: flex;
                     width: 100%;
+                    margin-top: 7px;
                     justify-content: space-between;
                     align-items: center;
 

@@ -28,7 +28,7 @@ const SectionItem = ({ item, primaryColor }) => (
 
 const SectionItemCompact = ({ item, primaryColor }) => (
 	<div className='resume-item resume-item--compact'>
-		<div className='resume-item__line1'>
+		{(item.title || item.subtitle) && <div className='resume-item__line1'>
 			<div className='resume-item__titles'>
 				<div className='resume-item__title' style={{ 'color': primaryColor }}>{item.title}</div>
 				<div className='resume-item__subtitle'>{item.subtitle}</div>
@@ -36,6 +36,7 @@ const SectionItemCompact = ({ item, primaryColor }) => (
 			</div>
 			<div className='resume-item__date'>{item.date}</div>
 		</div>
+		}
 		<div className='resume-item__description' dangerouslySetInnerHTML={{ __html: item.description }}></div>
 	</div>
 );

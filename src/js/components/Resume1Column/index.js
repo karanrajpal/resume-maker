@@ -59,10 +59,10 @@ const Resume1Column = ({ resumeJson, controls = {}, previewMode, compact = false
                     <h5 className='resume-header__role' style={{ 'color': secondaryColor }}>{role}</h5>
                 </div>
                 <div className='resume-header__contacts'>
-                    <Contact text={`/${linkedIn}`} url={`https://www.linkedin.com/in/${linkedIn}`} icon={linkedInIcon} />
                     <Contact text={email} url={`mailto: ${email}`} icon={emailIcon} />
-                    <Contact text={location} icon={locationIcon} />
                     <Contact text={phoneNumber} icon={phoneIcon} />
+                    <Contact text={`/${linkedIn}`} url={`https://www.linkedin.com/in/${linkedIn}`} icon={linkedInIcon} />
+                    <Contact text={location} icon={locationIcon} />
                     <Contact text={website} url={`http://${website}`} icon={websiteIcon} />
                     <Contact text={github} url={`https://github.com/${github}`} icon={githubIcon} />
                     <Contact text={twitter} url={`https://twitter.com/${twitter}`} icon={twitterIcon} />
