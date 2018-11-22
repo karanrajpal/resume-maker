@@ -26,13 +26,21 @@ const SectionItem = ({ item, primaryColor }) => (
 	</div>
 );
 
+const stripHttp = (link) => {
+	if (link) {
+		const protocolIdx = link.indexOf('://');
+		link = protocolIdx > 0 ? link.substr(protocolIdx + 3) : link;
+		return link;	
+	}
+};
+
 const SectionItemCompact = ({ item, primaryColor }) => (
 	<div className='resume-item resume-item--compact'>
 		{(item.title || item.subtitle) && <div className='resume-item__line1'>
 			<div className='resume-item__titles'>
 				<div className='resume-item__title' style={{ 'color': primaryColor }}>{item.title}</div>
 				<div className='resume-item__subtitle'>{item.subtitle}</div>
-				<div className='resume-item__link'><a href={item.link}>{item.link}</a></div>
+				<div className='resume-item__link'><a href={item.link}>{stripHttp(item.link)}</a></div>
 			</div>
 			<div className='resume-item__date'>{item.date}</div>
 		</div>
@@ -67,10 +75,10 @@ export const Section = ({ sectionData, primaryColor, compact }) => {
 Section.propTypes = {
 	sectionData: PropTypes.shape({
 		data: PropTypes.arrayOf(PropTypes.shape({
-			title: PropTypes.string.isRequired,
-			subtitle: PropTypes.string.isRequired,
-			description: PropTypes.string.isRequired,
-			date: PropTypes.string.isRequired,
+			title: PropTypes.string,
+			subtitle: PropTypes.string,
+			description: PropTypes.string,
+			date: PropTypes.string,
 			link: PropTypes.string,
 		})).isRequired,
 		title: PropTypes.string
