@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -10,8 +9,15 @@ import 'brace/theme/monokai';
 
 import ConnectedResume from './ResumeSwitch';
 import { setResumeJson, loadInitialState, setResumeLayout, setControl } from '../state/actions';
+import { AppReducerState } from '../state/AppReducer';
 
-const Toolbar = ({ controls = {}, setControl, loadInitialState, setResumeLayout }) => (
+type ToolbarProps = {
+    controls: Record<string, unknown>;
+    loadInitialState: () => void,
+    setResumeLayout: (resumeLayout: string) => void,
+    setControl: (controlKey: string, controlValue: string) => void,
+};
+const Toolbar = ({ controls = {}, setControl, loadInitialState, setResumeLayout }: ToolbarProps) => (
     <nav>
         <div className='nav-container resume-editor__toolbar'>
             <div className='nav-logo'>
@@ -51,15 +57,9 @@ const Toolbar = ({ controls = {}, setControl, loadInitialState, setResumeLayout 
     </nav>
 );
 
-Toolbar.propTypes = {
-    controls: PropTypes.object.isRequired,
-    loadInitialState: PropTypes.func.isRequired,
-    setResumeLayout: PropTypes.func.isRequired,
-    setControl: PropTypes.func.isRequired,
-};
 
 const ConnectedToolbar = connect(
-    (state) => ({
+    (state: AppReducerState) => ({
         controls: state.controls,
     }),
     (dispatch) => ({
@@ -69,70 +69,62 @@ const ConnectedToolbar = connect(
     })
 )(Toolbar);
 
-class ResumeEditor extends Component {
-    constructor(props) {
-        super(props);
-        this.onChange = this.onChange.bind(this);
-    }
-
-    onChange(resumeJson) {
+type ResumeEditorProps = {
+    resumeJson: Record<string, unknown>,
+    setResumeJson: (resumeJson: Record<string, unknown>) => void,
+}
+export const ResumeEditor = (props: ResumeEditorProps) => {
+    let { resumeJson, setResumeJson } = props;
+    const onChange = (resumeJson) => {
         try {
             resumeJson = JSON.parse(resumeJson);
-            this.props.setResumeJson(resumeJson);
+            setResumeJson(resumeJson);
         } catch (e) {
             // do nothing
         }
     }
-
-    render() {
-        let { resumeJson } = this.props;
-        resumeJson = JSON.stringify(resumeJson, null, 2);
-        return (
-            <div className='resume-editor'>
-                <ConnectedToolbar />
-                <div className='resume-split-screen'>
-                    <div className='resume-editor__json'>
-                        <AceEditor
-                            mode="json"
-                            theme="monokai"
-                            name="code-editor"
-                            onChange={this.onChange}
-                            fontSize={14}
-                            showPrintMargin={true}
-                            showGutter={true}
-                            highlightActiveLine={true}
-                            value={resumeJson}
-                            height={'100%'}
-                            width={'100%'}
-                            setOptions={{
-                                enableBasicAutocompletion: false,
-                                enableLiveAutocompletion: false,
-                                enableSnippets: false,
-                                showLineNumbers: true,
-                                tabSize: 2,
-                            }}
-                        />
-                    </div>
-                    <ConnectedResume
-                        previewMode={true}
+    resumeJson = JSON.stringify(resumeJson, null, 2);
+    return (
+        <div className='resume-editor'>
+            hello
+            <ConnectedToolbar />
+            <div className='resume-split-screen'>
+                <div className='resume-editor__json'>
+                    <AceEditor
+                        mode="json"
+                        theme="monokai"
+                        name="code-editor"
+                        onChange={onChange}
+                        fontSize={14}
+                        showPrintMargin={true}
+                        showGutter={true}
+                        highlightActiveLine={true}
+                        value={resumeJson}
+                        height={'100%'}
+                        width={'100%'}
+                        setOptions={{
+                            enableBasicAutocompletion: false,
+                            enableLiveAutocompletion: false,
+                            enableSnippets: false,
+                            showLineNumbers: true,
+                            tabSize: 2,
+                        }}
                     />
                 </div>
+                <ConnectedResume
+                    previewMode={true}
+                />
             </div>
-        );
-    }
-};
-
-ResumeEditor.propTypes = {
-    resumeJson: PropTypes.object,
-    setResumeJson: PropTypes.func.isRequired,
+        </div>
+    );
 };
 
 const ConnectedResumeEditor = connect(
-    (state) => ({
+    (state: AppReducerState) => ({
         resumeJson: state.resumeJson,
     }),
     (dispatch) => ({
-        setResumeJson: (resumeJson) => dispatch(setResumeJson(resumeJson)),
+        setResumeJson: (resumeJson: ) => dispatch(setResumeJson(resumeJson)),
     }),
 )(ResumeEditor);
 

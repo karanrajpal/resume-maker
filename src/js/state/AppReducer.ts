@@ -8,7 +8,34 @@ import {
 // Import saveState to save to browser's local storage
 import { saveState } from './localStorage';
 
-export const initialState = {
+type Profile = {
+    firstName: string;
+    lastName: string;
+};
+type Section = {
+    title: string;
+    data: Array<{
+        title: string;
+        subtitle: string;
+        description: string;
+        date: string;
+    }>;
+}
+export type ReducerJson = {
+    profile: Profile,
+    sections: Section[];
+    skills: string[];
+}
+type LayoutTypes = 'single' | 'double' | 'single-compact';
+export type AppReducerState = {
+    resumeJson: AppReducerState;
+    resumeLayoutKey: LayoutTypes;
+    controls: {
+        primaryColor: string;
+        secondaryColor: string;
+    }
+}
+export const initialState: AppReducerState = {
     resumeJson: {
         "profile": {
             "firstName": "John",
@@ -82,7 +109,7 @@ export const initialState = {
 
 // Define and export reducer
 const AppReducer = (state = initialState, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case SET_RESUME_JSON:
             const modifiedState = {
                 ...state,
@@ -95,9 +122,9 @@ const AppReducer = (state = initialState, action) => {
                 resumeJson: initialState.resumeJson,
                 resumeLayoutKey: initialState.resumeLayoutKey,
             });
-            return {...initialState};
+            return { ...initialState };
         case SET_RESUME_LAYOUT: {
-            const modifiedState ={
+            const modifiedState = {
                 ...state,
                 resumeLayoutKey: action.resumeLayoutKey,
             };
