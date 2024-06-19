@@ -65,11 +65,11 @@ const Resume = ({ resumeJson, controls, previewMode }: ResumeProps) => {
     );
 };
 
-const ConnectedResume = connect(
+const ConnectedResume2Column = connect(
     (state: AppReducerState) => ({
         resumeJson: state.resumeJson,
         controls: state.controls,
     })
 )(Resume);
 
-export default ConnectedResume;
+export default ConnectedResume2Column;

@@ -7,7 +7,7 @@ import brace from 'brace';
 import 'brace/mode/json';
 import 'brace/theme/monokai';
 
-import ConnectedResume from './ResumeSwitch';
+import ConnectedResumeSwitch from './ResumeSwitch';
 import { setResumeJson, loadInitialState, setResumeLayout, setControl } from '../state/actions';
 import { AppReducerState, ControlType, Controls, LayoutType, ResumeJson } from '../state/AppReducer';
 
@@ -110,7 +110,7 @@ export const ResumeEditor = (props: ResumeEditorProps) => {
                         }}
                     />
                 </div>
-                <ConnectedResume
+                <ConnectedResumeSwitch
                     previewMode={true}
                 />
             </div>

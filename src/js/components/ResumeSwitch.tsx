@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import Resume1Column from './Resume1Column';
-import Resume2Column from './Resume2Column';
+import ConnectedResume1Column from './Resume1Column';
 import { AppReducerState, Controls, LayoutType, ResumeJson } from '../state/AppReducer';
+import ConnectedResume2Column from './Resume2Column';
 
-export type ResumeProps = {
+type ResumeSwitchProps = {
     resumeLayoutKey: LayoutType;
     previewMode: boolean;
+};
+export type ResumeProps = ResumeSwitchProps & {
     resumeJson: ResumeJson;
     controls: Controls;
     compact?: boolean;
@@ -16,17 +18,17 @@ export type ContactProps = {
     icon?: string;
     url?: string;
 };
-const ResumeSwitch = (props: ResumeProps) => {
+const ResumeSwitch = (props: ResumeSwitchProps) => {
     const { resumeLayoutKey } = props;
     switch (resumeLayoutKey) {
         case 'single':
-            return (<div className='resume-1-column'><Resume1Column {...props} /></div>);
+            return (<div className='resume-1-column'><ConnectedResume1Column {...props} /></div>);
         case 'single-compact':
-            return (<div className='resume-1-column'><Resume1Column {...props} compact={true} /></div>)
+            return (<div className='resume-1-column'><ConnectedResume1Column {...props} compact={true} /></div>)
         case 'double':
-            return <div className='resume-2-column'><Resume2Column {...props} /></div>
+            return <div className='resume-2-column'><ConnectedResume2Column {...props} /></div>
         default:
-            return <div className='resume-2-column'><Resume2Column {...props} /></div>
+            return <div className='resume-2-column'><ConnectedResume2Column {...props} /></div>
     }
 };
 
