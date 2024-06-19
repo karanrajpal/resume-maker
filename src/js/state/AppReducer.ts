@@ -36,7 +36,7 @@ export type ResumeJson = {
     sections: SectionType[];
     skills: string[];
 };
-export type LayoutType = 'single' | 'double' | 'single-compact';
+export type LayoutType = 'single' | 'double' | 'single-compact' | 'single-simple';
 export type ControlType = 'primaryColor' | 'secondaryColor';
 export type Controls = Record<ControlType, string>;
 export type AppReducerState = {

@@ -30,6 +30,7 @@ const Toolbar = ({ controls, setControl, loadInitialState, setResumeLayout }: To
                         <li><a onClick={() => setResumeLayout('single')}>Single Column</a></li>
                         <li><a onClick={() => setResumeLayout('single-compact')}>Single Column Compact</a></li>
                         <li><a onClick={() => setResumeLayout('double')}>Double Column</a></li>
+                        <li><a onClick={() => setResumeLayout('single-simple')}>Single Column Simple</a></li>
                     </ul>
                 </li>
                 <li className='dropdown'>
