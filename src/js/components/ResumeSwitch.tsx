@@ -25,7 +25,7 @@ const ResumeSwitch = (props: ResumeSwitchProps) => {
         case 'single':
             return (<div className='resume-1-column'><ConnectedResume1Column {...props} /></div>);
         case 'single-simple':
-            return (<div className='resume-1-column'><ConnectedResume1ColumnSimple {...props} /></div>);
+            return (<div className='resume-1-column-simple'><ConnectedResume1ColumnSimple {...props} /></div>);
         case 'single-compact':
             return (<div className='resume-1-column'><ConnectedResume1Column {...props} compact={true} /></div>)
         case 'double':

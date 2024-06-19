@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import AceEditor from 'react-ace';
-import brace from 'brace';
 import 'brace/mode/json';
 import 'brace/theme/monokai';
 

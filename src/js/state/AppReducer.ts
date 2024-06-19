@@ -25,6 +25,7 @@ export type SectionItem = {
     description: string;
     date: string;
     subtitle: string;
+    location?: string;
     link?: string;
 }
 export type SectionType = {

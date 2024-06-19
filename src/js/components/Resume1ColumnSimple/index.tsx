@@ -5,20 +5,12 @@ import { Section, SectionHeading } from '../Section';
 
 import './styles.scss';
 
-import linkedInIcon from '../../../../icons/linkedin.png';
-import githubIcon from '../../../../icons/github7.png';
-import phoneIcon from '../../../../icons/smartphone11.png';
-import websiteIcon from '../../../../icons/website8.png';
-import emailIcon from '../../../../icons/envelope32.png';
-import twitterIcon from '../../../../icons/twitter42.png';
-import locationIcon from '../../../../icons/location.png';
 import { ContactProps, ResumeProps } from '../ResumeSwitch';
 import { AppReducerState } from '../../state/AppReducer';
 
 const Contact = ({ url, text, icon }: ContactProps) => (
     text ?
         (<div className='resume__contact'>
-            {icon && <span className='resume__contact-icon'><img src={icon} /></span>}
             {url && <a href={url}>{text}</a>}
             {!url && <span>{text}</span>}
         </div>)
@@ -50,16 +42,16 @@ const Resume1ColumnSimple = ({ resumeJson, controls, previewMode, compact = fals
         <div className='resume' style={styleProp}>
             <div className='resume-header'>
                 <div className='resume-header__titles'>
-                    <h1 style={{ 'color': primaryColor }}>{`${firstName} ${lastName}`}</h1>
+                    <h2 style={{ 'color': primaryColor }}>{`${firstName} ${lastName}`}</h2>
                 </div>
                 <div className='resume-header__contacts'>
-                    <Contact text={email} url={`mailto: ${email}`} icon={emailIcon} />
-                    <Contact text={phoneNumber} icon={phoneIcon} />
-                    <Contact text={`/${linkedIn}`} url={`https://www.linkedin.com/in/${linkedIn}`} icon={linkedInIcon} />
-                    <Contact text={location} icon={locationIcon} />
-                    <Contact text={website} url={`http://${website}`} icon={websiteIcon} />
-                    <Contact text={github} url={`https://github.com/${github}`} icon={githubIcon} />
-                    <Contact text={twitter} url={`https://twitter.com/${twitter}`} icon={twitterIcon} />
+                    <Contact text={email} url={`mailto: ${email}`} />
+                    <Contact text={phoneNumber} />
+                    <Contact text={`linkedin.com/in/${linkedIn}`} url={`https://www.linkedin.com/in/${linkedIn}`} />
+                    <Contact text={location} />
+                    <Contact text={website} url={`http://${website}`} />
+                    <Contact text={`github.com/${github}`} url={`https://github.com/${github}`} />
+                    <Contact text={twitter} url={`https://twitter.com/${twitter}`} />
                 </div>
             </div>
             <div className='resume-body'>

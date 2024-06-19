@@ -11,6 +11,13 @@ export const SectionHeading = (props: SectionHeadingProps) => (
     </div>
 );
 
+type SectionDescriptionProps = {
+    item: SectionItem;
+};
+const SectionDescription = ({ item }: SectionDescriptionProps) => (
+    <div className='resume-item__description' dangerouslySetInnerHTML={{ __html: item.description }}></div>
+);
+
 type SectionItemProps = {
     item: SectionItem;
     primaryColor: string;
@@ -20,17 +27,18 @@ const SectionItem = ({ item, primaryColor }: SectionItemProps) => (
         <div className='resume-item__line1'>
             <div className='resume-item__titles'>
                 <div className='resume-item__title' style={{ 'color': primaryColor }}>{item.title}</div>
+                <div className='resume-item__date'>{item.date}</div>
             </div>
         </div>
         <div className='resume-item__line2'>
             <div className='resume-item__subtitle'>{item.subtitle}</div>
-            <div className='resume-item__date'>{item.date}</div>
+            <div className='resume-item__location'>{item.location}</div>
         </div>
-        <div className='resume-item__description' dangerouslySetInnerHTML={{ __html: item.description }}></div>
+        <SectionDescription item={item} />
     </div>
 );
 
-const stripHttp = (link) => {
+const stripHttp = (link: string | undefined) => {
     if (link) {
         const protocolIdx = link.indexOf('://');
         link = protocolIdx > 0 ? link.substr(protocolIdx + 3) : link;
@@ -49,7 +57,7 @@ const SectionItemCompact = ({ item, primaryColor }: SectionItemProps) => (
             <div className='resume-item__date'>{item.date}</div>
         </div>
         }
-        <div className='resume-item__description' dangerouslySetInnerHTML={{ __html: item.description }}></div>
+        <SectionDescription item={item} />
     </div>
 );
 type SectionProps = {

@@ -1,23 +1,21 @@
 $link-color: #222288;
-.resume-1-column {
+.resume-1-column-simple {
     .resume {
         &-header {
-            display: flex;
             color: #808080;
-            justify-content: space-between;
-            &__role {
-                font-weight: 400;
-                text-transform: uppercase;
-            }
+            text-align: center;
+            // &__role {
+            //     font-weight: 400;
+            //     text-transform: uppercase;
+            // }
 
             &__contacts {
                 display: flex;
-                width: 300px;
-                flex-wrap: wrap;
-                align-items: center;
+                width: 100%;
+                justify-content: space-between;
 
                 .resume__contact {
-                    width: 150px;
+                    // width: 150px;
                     height: 20px;
                     color: $link-color;
                     display: flex;
@@ -84,12 +82,13 @@ $link-color: #222288;
                     display: flex;
                     width: 100%;
                     margin-top: 7px;
-                    justify-content: space-between;
-                    align-items: center;
 
                     .resume-item__titles {
                         display: flex;
                         align-items: center;
+                        justify-content: space-between;
+                        width: 100%;
+
                         .resume-item__title {
                             font-weight: 500;
                             font-size: 15px;
@@ -110,13 +109,17 @@ $link-color: #222288;
                     justify-content: space-between;
                     margin: 0 0 2px;
                     
-                    .resume-item__subtitle {
-                        font-style: italic;
-                    }
+                    // .resume-item__subtitle {
+                    //     font-style: italic;
+                    // }
                 }
 
                 &__description {
                     font-weight: 100;
+                }
+
+                &__date {
+                    font-weight: bold;
                 }
             }
         }
