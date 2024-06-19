@@ -2,12 +2,21 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import Resume1Column from './Resume1Column';
 import Resume2Column from './Resume2Column';
-import { AppReducerState } from '../state/AppReducer';
+import { AppReducerState, Controls, LayoutType, ResumeJson } from '../state/AppReducer';
 
-type ResumeSwitchProps = {
-    resumeLayoutKey: 'single' | 'single-compact' | 'double';
+export type ResumeProps = {
+    resumeLayoutKey: LayoutType;
+    previewMode: boolean;
+    resumeJson: ResumeJson;
+    controls: Controls;
+    compact?: boolean;
 };
-const ResumeSwitch = (props: ResumeSwitchProps) => {
+export type ContactProps = {
+    text: string;
+    icon?: string;
+    url?: string;
+};
+const ResumeSwitch = (props: ResumeProps) => {
     const { resumeLayoutKey } = props;
     switch (resumeLayoutKey) {
         case 'single':

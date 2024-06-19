@@ -1,12 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { Section, SectionHeading } from '../Section';
 
 import './styles.scss';
+import { ContactProps, ResumeProps } from '../ResumeSwitch';
+import { AppReducerState } from '../../state/AppReducer';
 
-const Contact = ({ url, text }) => {
+const Contact = ({ url, text }: ContactProps) => {
     return (
         <div className='resume__contact'>
             {url && <a href={url}>{text}</a>}
@@ -15,12 +16,7 @@ const Contact = ({ url, text }) => {
     );
 };
 
-Contact.propTypes = {
-    text: PropTypes.string.isRequired,
-    url: PropTypes.string,
-};
-
-const Resume = ({ resumeJson, controls = {}, previewMode }) => {
+const Resume = ({ resumeJson, controls, previewMode }: ResumeProps) => {
     const {
         firstName,
         lastName,
@@ -69,21 +65,8 @@ const Resume = ({ resumeJson, controls = {}, previewMode }) => {
     );
 };
 
-Resume.propTypes = {
-    resumeJson: PropTypes.shape({
-        profile: PropTypes.object.isRequired,
-        sections: PropTypes.array.isRequired,
-        skills: PropTypes.array.isRequired,
-    }),
-    controls: PropTypes.shape({
-        primaryColor: PropTypes.string.isRequired,
-        secondaryColor: PropTypes.string.isRequired,
-    }).isRequired,
-    previewMode: PropTypes.bool,
-};
-
 const ConnectedResume = connect(
-    (state) => ({
+    (state: AppReducerState) => ({
         resumeJson: state.resumeJson,
         controls: state.controls,
     })

@@ -11,30 +11,39 @@ import { saveState } from './localStorage';
 type Profile = {
     firstName: string;
     lastName: string;
+    phoneNumber: string;
+    role: string;
+    email: string;
+    linkedIn: string;
+    location: string;
+    website: string;
+    github: string;
+    twitter: string;
 };
-type Section = {
+export type SectionItem = {
     title: string;
-    data: Array<{
-        title: string;
-        subtitle: string;
-        description: string;
-        date: string;
-    }>;
+    description: string;
+    date: string;
+    subtitle: string;
+    link?: string;
 }
-export type ReducerJson = {
+export type SectionType = {
+    title: string;
+    data: SectionItem[];
+}
+export type ResumeJson = {
     profile: Profile,
-    sections: Section[];
+    sections: SectionType[];
     skills: string[];
-}
-type LayoutTypes = 'single' | 'double' | 'single-compact';
+};
+export type LayoutType = 'single' | 'double' | 'single-compact';
+export type ControlType = 'primaryColor' | 'secondaryColor';
+export type Controls = Record<ControlType, string>;
 export type AppReducerState = {
-    resumeJson: AppReducerState;
-    resumeLayoutKey: LayoutTypes;
-    controls: {
-        primaryColor: string;
-        secondaryColor: string;
-    }
-}
+    resumeJson: ResumeJson;
+    resumeLayoutKey: LayoutType;
+    controls: Controls;
+};
 export const initialState: AppReducerState = {
     resumeJson: {
         "profile": {

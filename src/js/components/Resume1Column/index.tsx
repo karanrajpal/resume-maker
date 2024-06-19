@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { Section, SectionHeading } from '../Section';
@@ -13,8 +12,10 @@ import websiteIcon from '../../../../icons/website8.png';
 import emailIcon from '../../../../icons/envelope32.png';
 import twitterIcon from '../../../../icons/twitter42.png';
 import locationIcon from '../../../../icons/location.png';
+import { ContactProps, ResumeProps } from '../ResumeSwitch';
+import { AppReducerState } from '../../state/AppReducer';
 
-const Contact = ({ url, text, icon }) => (
+const Contact = ({ url, text, icon }: ContactProps) => (
     text ?
         (<div className='resume__contact'>
             {icon && <span className='resume__contact-icon'><img src={icon} /></span>}
@@ -24,12 +25,7 @@ const Contact = ({ url, text, icon }) => (
         : null
 );
 
-Contact.propTypes = {
-    text: PropTypes.string.isRequired,
-    url: PropTypes.string,
-};
-
-const Resume1Column = ({ resumeJson, controls = {}, previewMode, compact = false }) => {
+const Resume1Column = ({ resumeJson, controls, previewMode, compact = false }: ResumeProps) => {
     const {
         firstName,
         lastName,
@@ -85,22 +81,8 @@ const Resume1Column = ({ resumeJson, controls = {}, previewMode, compact = false
     );
 };
 
-Resume1Column.propTypes = {
-    resumeJson: PropTypes.shape({
-        profile: PropTypes.object.isRequired,
-        sections: PropTypes.array.isRequired,
-        skills: PropTypes.array.isRequired,
-    }),
-    controls: PropTypes.shape({
-        primaryColor: PropTypes.string.isRequired,
-        secondaryColor: PropTypes.string.isRequired,
-    }).isRequired,
-    compact: PropTypes.bool,
-    previewMode: PropTypes.bool,
-};
-
 const ConnectedResume1Column = connect(
-    (state) => ({
+    (state: AppReducerState) => ({
         resumeJson: state.resumeJson,
         controls: state.controls,
     })

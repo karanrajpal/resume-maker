@@ -9,15 +9,15 @@ import 'brace/theme/monokai';
 
 import ConnectedResume from './ResumeSwitch';
 import { setResumeJson, loadInitialState, setResumeLayout, setControl } from '../state/actions';
-import { AppReducerState } from '../state/AppReducer';
+import { AppReducerState, ControlType, Controls, LayoutType, ResumeJson } from '../state/AppReducer';
 
 type ToolbarProps = {
-    controls: Record<string, unknown>;
+    controls: Controls;
     loadInitialState: () => void,
-    setResumeLayout: (resumeLayout: string) => void,
-    setControl: (controlKey: string, controlValue: string) => void,
+    setResumeLayout: (resumeLayoutKey: LayoutType) => void,
+    setControl: (controlKey: ControlType, controlValue: string) => void,
 };
-const Toolbar = ({ controls = {}, setControl, loadInitialState, setResumeLayout }: ToolbarProps) => (
+const Toolbar = ({ controls, setControl, loadInitialState, setResumeLayout }: ToolbarProps) => (
     <nav>
         <div className='nav-container resume-editor__toolbar'>
             <div className='nav-logo'>
@@ -64,17 +64,18 @@ const ConnectedToolbar = connect(
     }),
     (dispatch) => ({
         loadInitialState: () => dispatch(loadInitialState()),
-        setResumeLayout: (resumeLayoutKey) => dispatch(setResumeLayout(resumeLayoutKey)),
-        setControl: (controlKey, controlValue) => dispatch(setControl(controlKey, controlValue)),
+        setResumeLayout: (resumeLayoutKey: LayoutType) => dispatch(setResumeLayout(resumeLayoutKey)),
+        setControl: (controlKey: ControlType, controlValue: string) => dispatch(setControl(controlKey, controlValue)),
     })
 )(Toolbar);
 
 type ResumeEditorProps = {
-    resumeJson: Record<string, unknown>,
-    setResumeJson: (resumeJson: Record<string, unknown>) => void,
+    resumeJson: ResumeJson,
+    setResumeJson: (resumeJson: ResumeJson) => void,
 }
 export const ResumeEditor = (props: ResumeEditorProps) => {
     let { resumeJson, setResumeJson } = props;
+    const resumeJsonString = JSON.stringify(resumeJson, null, 2);
     const onChange = (resumeJson) => {
         try {
             resumeJson = JSON.parse(resumeJson);
@@ -83,10 +84,9 @@ export const ResumeEditor = (props: ResumeEditorProps) => {
             // do nothing
         }
     }
-    resumeJson = JSON.stringify(resumeJson, null, 2);
+    // resumeJson = JSON.stringify(resumeJson, null, 2);
     return (
         <div className='resume-editor'>
-            hello
             <ConnectedToolbar />
             <div className='resume-split-screen'>
                 <div className='resume-editor__json'>
@@ -99,7 +99,7 @@ export const ResumeEditor = (props: ResumeEditorProps) => {
                         showPrintMargin={true}
                         showGutter={true}
                         highlightActiveLine={true}
-                        value={resumeJson}
+                        value={resumeJsonString}
                         height={'100%'}
                         width={'100%'}
                         setOptions={{
@@ -124,7 +124,7 @@ const ConnectedResumeEditor = connect(
         resumeJson: state.resumeJson,
     }),
     (dispatch) => ({
-        setResumeJson: (resumeJson: ) => dispatch(setResumeJson(resumeJson)),
+        setResumeJson: (resumeJson: ResumeJson) => dispatch(setResumeJson(resumeJson)),
     }),
 )(ResumeEditor);
 
