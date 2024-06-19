@@ -84,7 +84,6 @@ export const ResumeEditor = (props: ResumeEditorProps) => {
             // do nothing
         }
     }
-    // resumeJson = JSON.stringify(resumeJson, null, 2);
     return (
         <div className='resume-editor'>
             <ConnectedToolbar />
